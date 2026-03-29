@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paolo Kiki Jewelry</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0E0C09;
+    --dark2: #1A1710;
+    --dark3: #252118;
+    --mid: #3A3428;
+    --text: #E8E0D0;
+    --text-muted: #9A8E78;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--text); font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(14,12,9,0.97) 0%, transparent 100%);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+  .nav-logo-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; letter-spacing: 0.18em; color: var(--gold-light); text-transform: uppercase; }
+  .nav-logo-sub { font-family: var(--sans); font-size: 0.52rem; font-weight: 300; letter-spacing: 0.45em; color: var(--text-muted); text-transform: uppercase; margin-top: 1px; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 15% 80%, rgba(201,168,76,0.04) 0%, transparent 60%); }
+  .hero-ornament { position: absolute; right: 3%; top: 50%; transform: translateY(-50%); width: 440px; height: 480px; pointer-events: none; }
+  @keyframes floatRing { 0%,100%{transform:translateY(-50%) translateY(0)} 50%{transform:translateY(-50%) translateY(-14px)} }
+  .hero-ornament { animation: floatRing 6s ease-in-out infinite; }
+  .hero-content { position: relative; z-index: 1; max-width: 640px; }
+  .tag { font-size: 0.63rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem; }
+  .tag::before { content: ''; display: block; width: 36px; height: 1px; background: var(--gold); flex-shrink: 0; }
+  h1 { font-family: var(--serif); font-size: clamp(3.2rem, 7vw, 5.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+  h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-desc { font-size: 0.92rem; line-height: 1.85; color: var(--text-muted); max-width: 400px; margin-bottom: 2.75rem; }
+  .ctas { display: flex; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.85rem 2rem; font-family: var(--sans); font-size: 0.68rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; }
+  .btn-gold { border: 1px solid var(--gold); color: var(--gold-light); background: transparent; }
+  .btn-gold:hover { background: var(--gold); color: var(--dark); }
+  .btn-ghost { color: var(--text-muted); border: none; background: none; }
+  .btn-ghost:hover { color: var(--text); }
+  .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); z-index: 1; }
+  .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--gold), transparent); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+  .divider { display: flex; align-items: center; gap: 1.5rem; padding: 0 3rem; opacity: 0.25; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--gold); }
+  .divider span { font-size: 0.58rem; color: var(--gold); letter-spacing: 0.35em; white-space: nowrap; }
+
+  section { padding: 6rem 3rem; }
+  h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.2; margin-bottom: 0.75rem; }
+  h2 em { font-style: italic; color: var(--gold-light); }
+  .s-intro { font-size: 0.88rem; color: var(--text-muted); line-height: 1.85; max-width: 460px; margin-bottom: 3.5rem; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1px; background: var(--mid); border: 1px solid var(--mid); }
+  .card { background: var(--dark2); padding: 2.25rem 1.75rem; position: relative; overflow: hidden; transition: background 0.35s; }
+  .card:hover { background: var(--dark3); }
+  .card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+  .card:hover::after { transform: scaleX(1); }
+  .card-num { font-family: var(--serif); font-size: 0.72rem; font-style: italic; color: var(--gold); opacity: 0.55; margin-bottom: 1.25rem; letter-spacing: 0.1em; }
+  .card h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--text); margin-bottom: 0.6rem; line-height: 1.2; }
+  .card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.8; }
+
+  .about-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-visual { display: flex; justify-content: center; }
+  .ring { width: 260px; height: 260px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.18); display: flex; align-items: center; justify-content: center; position: relative; }
+  .ring::before { content: ''; position: absolute; inset: -18px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.07); }
+  .ring-inner { width: 170px; height: 170px; border-radius: 50%; background: var(--dark3); border: 1px solid rgba(201,168,76,0.28); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem; }
+  .big-num { font-family: var(--serif); font-size: 2.8rem; font-weight: 300; color: var(--gold-light); line-height: 1; }
+  .big-label { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); }
+  .about-text p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.88; margin-bottom: 1.1rem; }
+  .about-text h2 { margin-bottom: 0.75rem; }
+  .pull { font-family: var(--serif); font-size: 1.2rem; font-style: italic; color: var(--gold-light); line-height: 1.65; margin: 1.75rem 0; padding-left: 1.5rem; border-left: 2px solid var(--gold); }
+
+  .contact-section { background: var(--dark2); text-align: center; position: relative; overflow: hidden; }
+  .contact-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 560px; height: 560px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.05); pointer-events: none; }
+  .contact-section h2 { max-width: 480px; margin: 0 auto 0.75rem; }
+  .contact-section .s-intro { margin: 0 auto 2.75rem; }
+  .contact-items { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; margin-bottom: 2.75rem; }
+  .ci-label { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .ci-val { font-family: var(--serif); font-size: 1.05rem; color: var(--text); font-weight: 300; }
+
+  footer { padding: 1.75rem 3rem; border-top: 1px solid var(--mid); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+  .foot-name { font-family: var(--serif); font-size: 0.95rem; color: var(--gold-light); letter-spacing: 0.1em; }
+  .foot-copy { font-size: 0.67rem; color: var(--text-muted); letter-spacing: 0.08em; }
+
+  .fade { opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s ease forwards; }
+  .fade:nth-child(1){animation-delay:0s}.fade:nth-child(2){animation-delay:0.12s}.fade:nth-child(3){animation-delay:0.22s}.fade:nth-child(4){animation-delay:0.32s}
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  @media(max-width:768px){
+    nav{padding:1.25rem 1.5rem}.nav-links{display:none}
+    section,.hero{padding:5rem 1.5rem 4rem}
+    .about-wrap{grid-template-columns:1fr;gap:3rem}
+    .hero-ornament{display:none}
+    footer{padding:1.75rem 1.5rem}
+    .divider{padding:0 1.5rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <!-- Diamond emblem mark -->
+    <svg width="36" height="42" viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer decorative frame -->
+      <polygon points="18,1 35,10 35,32 18,41 1,32 1,10" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.5"/>
+      <!-- Inner frame -->
+      <polygon points="18,5 31,12 31,30 18,37 5,30 5,12" fill="none" stroke="#C9A84C" stroke-width="0.4" opacity="0.3"/>
+      <!-- Diamond shape -->
+      <polygon points="18,8 28,15 28,27 18,34 8,27 8,15" fill="none" stroke="#E8C97A" stroke-width="0.8" opacity="0.6"/>
+      <!-- Diamond facets -->
+      <polygon points="18,8 28,15 18,21" fill="#C9A84C" fill-opacity="0.25"/>
+      <polygon points="28,15 28,27 18,21" fill="#C9A84C" fill-opacity="0.15"/>
+      <polygon points="28,27 18,34 18,21" fill="#C9A84C" fill-opacity="0.2"/>
+      <polygon points="18,34 8,27 18,21" fill="#C9A84C" fill-opacity="0.3"/>
+      <polygon points="8,27 8,15 18,21" fill="#C9A84C" fill-opacity="0.18"/>
+      <polygon points="8,15 18,8 18,21" fill="#C9A84C" fill-opacity="0.28"/>
+      <!-- Center highlight -->
+      <circle cx="18" cy="21" r="1.5" fill="#F0D98A" opacity="0.8"/>
+      <!-- Corner dots -->
+      <circle cx="18" cy="1" r="1.2" fill="#C9A84C" opacity="0.7"/>
+      <circle cx="18" cy="41" r="1.2" fill="#C9A84C" opacity="0.7"/>
+      <circle cx="1" cy="10" r="1" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="35" cy="10" r="1" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="1" cy="32" r="1" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="35" cy="32" r="1" fill="#C9A84C" opacity="0.5"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Paolo Kiki</span>
+      <span class="nav-logo-sub">Jewelry &nbsp;·&nbsp; Los Angeles</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament">
+    <svg viewBox="0 0 440 480" fill="none" xmlns="http://www.w3.org/2000/svg" width="440" height="480">
+      <defs>
+        <radialGradient id="haloGlow" cx="50%" cy="62%" r="45%">
+          <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.28"/>
+          <stop offset="60%" stop-color="#C9A84C" stop-opacity="0.07"/>
+          <stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="bottomGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="bandFaceL" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#3D2A05"/>
+          <stop offset="30%" stop-color="#8A6318"/>
+          <stop offset="65%" stop-color="#E8C355"/>
+          <stop offset="100%" stop-color="#F5DFA0"/>
+        </linearGradient>
+        <linearGradient id="bandFaceR" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#F5DFA0"/>
+          <stop offset="35%" stop-color="#C9A84C"/>
+          <stop offset="70%" stop-color="#7A5A10"/>
+          <stop offset="100%" stop-color="#3D2A05"/>
+        </linearGradient>
+        <linearGradient id="bandTop" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#F5E4A0"/>
+          <stop offset="50%" stop-color="#C9A84C"/>
+          <stop offset="100%" stop-color="#8A6318"/>
+        </linearGradient>
+        <linearGradient id="settingV" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#F0D070"/>
+          <stop offset="40%" stop-color="#C9A84C"/>
+          <stop offset="100%" stop-color="#5A3E0A"/>
+        </linearGradient>
+        <linearGradient id="gemFill" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stop-color="#EEF8FF"/>
+          <stop offset="25%" stop-color="#A8D8F8"/>
+          <stop offset="55%" stop-color="#4A9FD8"/>
+          <stop offset="100%" stop-color="#1A4F80"/>
+        </linearGradient>
+        <linearGradient id="gemLeft" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#C8E8FF"/>
+          <stop offset="100%" stop-color="#2870B0"/>
+        </linearGradient>
+        <linearGradient id="gemRight" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#88C0E8"/>
+          <stop offset="100%" stop-color="#0F3060"/>
+        </linearGradient>
+        <linearGradient id="gemDark" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1A5890"/>
+          <stop offset="100%" stop-color="#081828"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ── AMBIENT GLOW HALOS ── -->
+      <ellipse cx="220" cy="300" rx="190" ry="60" fill="url(#haloGlow)"/>
+      <ellipse cx="220" cy="380" rx="110" ry="30" fill="url(#bottomGlow)" opacity="0.5"/>
+      <!-- orbit ring -->
+      <ellipse cx="220" cy="300" rx="175" ry="50" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.18"/>
+      <ellipse cx="220" cy="300" rx="185" ry="54" fill="none" stroke="#C9A84C" stroke-width="0.5" opacity="0.09"/>
+
+      <!-- ── RING BAND — 3/4 perspective ── -->
+      <!-- Left shank -->
+      <path d="M 100 310 C 100 340 130 368 220 372 C 310 368 340 340 340 310 L 340 260 C 340 260 312 238 280 232 L 280 282 C 280 298 255 318 220 320 C 185 318 160 298 160 282 L 160 232 C 128 238 100 260 100 260 Z"
+        fill="url(#bandFaceL)" stroke="none"/>
+      <!-- Right shank highlight -->
+      <path d="M 280 232 L 280 282 C 280 298 255 318 220 320 C 185 318 160 298 160 282 L 160 232 C 190 226 250 226 280 232 Z"
+        fill="url(#bandTop)" opacity="0.7"/>
+      <!-- Band top rim (the top face of the band) -->
+      <ellipse cx="220" cy="232" rx="60" ry="16" fill="url(#bandTop)" stroke="#C9A84C" stroke-width="0.8"/>
+      <!-- Band inner hole -->
+      <ellipse cx="220" cy="232" rx="44" ry="11" fill="#0E0C09" stroke="#5A3E0A" stroke-width="0.8"/>
+      <!-- Band inner rim highlight -->
+      <ellipse cx="220" cy="230" rx="44" ry="11" fill="none" stroke="#C9A84C" stroke-width="0.6" opacity="0.35"/>
+      <!-- Band bottom arc -->
+      <path d="M 100 310 C 100 345 155 372 220 372 C 285 372 340 345 340 310" fill="none" stroke="#8A6318" stroke-width="1" opacity="0.7"/>
+      <!-- Sheen line on band -->
+      <path d="M 108 305 C 108 338 158 364 220 364" fill="none" stroke="#F0D070" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+
+      <!-- ── ORNATE CROWN SETTING ── -->
+      <!-- Crown base plate -->
+      <path d="M 162 232 L 168 195 L 272 195 L 278 232 Z" fill="url(#settingV)" stroke="#8A6318" stroke-width="0.8"/>
+      <!-- Crown decorative band -->
+      <rect x="165" y="212" width="110" height="8" rx="1" fill="#F0D070" opacity="0.55"/>
+      <!-- Crown scallop arches (ornate detail) -->
+      <path d="M 168 195 Q 178 185 188 195 Q 198 185 208 195 Q 218 183 228 195 Q 238 185 248 195 Q 258 185 268 195 Q 272 188 272 195" fill="none" stroke="#F0D070" stroke-width="1.5" opacity="0.8"/>
+      <!-- Small accent gems on crown band -->
+      <ellipse cx="183" cy="222" rx="4" ry="3.5" fill="#d4ecff" stroke="#E8C355" stroke-width="0.7"/>
+      <ellipse cx="203" cy="220" rx="4" ry="3.5" fill="#d4ecff" stroke="#E8C355" stroke-width="0.7"/>
+      <ellipse cx="220" cy="219" rx="4.5" ry="4" fill="#ffffff" stroke="#E8C355" stroke-width="0.8" opacity="0.9"/>
+      <ellipse cx="237" cy="220" rx="4" ry="3.5" fill="#d4ecff" stroke="#E8C355" stroke-width="0.7"/>
+      <ellipse cx="257" cy="222" rx="4" ry="3.5" fill="#d4ecff" stroke="#E8C355" stroke-width="0.7"/>
+      <!-- Scroll filigree left -->
+      <path d="M 168 208 Q 162 200 168 193 Q 174 188 178 195" fill="none" stroke="#F0D070" stroke-width="1.2" opacity="0.7"/>
+      <path d="M 172 206 Q 165 198 171 191" fill="none" stroke="#F0D070" stroke-width="0.8" opacity="0.5"/>
+      <!-- Scroll filigree right -->
+      <path d="M 272 208 Q 278 200 272 193 Q 266 188 262 195" fill="none" stroke="#F0D070" stroke-width="1.2" opacity="0.7"/>
+      <path d="M 268 206 Q 275 198 269 191" fill="none" stroke="#F0D070" stroke-width="0.8" opacity="0.5"/>
+
+      <!-- PRONGS (4 main prongs hugging the gem) -->
+      <!-- Left prong -->
+      <path d="M 168 196 L 163 158 Q 163 152 168 150 Q 173 148 175 155 L 173 196 Z" fill="url(#settingV)" stroke="#E8C355" stroke-width="0.6"/>
+      <ellipse cx="166" cy="149" rx="4.5" ry="4" fill="#F5E4A0"/>
+      <!-- Right prong -->
+      <path d="M 272 196 L 277 158 Q 277 152 272 150 Q 267 148 265 155 L 267 196 Z" fill="url(#settingV)" stroke="#E8C355" stroke-width="0.6"/>
+      <ellipse cx="274" cy="149" rx="4.5" ry="4" fill="#F5E4A0"/>
+      <!-- Back-left prong -->
+      <path d="M 185 196 L 182 162 Q 182 156 186 154 Q 190 153 191 158 L 190 196 Z" fill="#C9A84C" opacity="0.75" stroke="#E8C355" stroke-width="0.5"/>
+      <ellipse cx="184" cy="153" rx="3.5" ry="3" fill="#E8C97A" opacity="0.85"/>
+      <!-- Back-right prong -->
+      <path d="M 255 196 L 258 162 Q 258 156 254 154 Q 250 153 249 158 L 250 196 Z" fill="#C9A84C" opacity="0.75" stroke="#E8C355" stroke-width="0.5"/>
+      <ellipse cx="256" cy="153" rx="3.5" ry="3" fill="#E8C97A" opacity="0.85"/>
+
+      <!-- ── BLUE DIAMOND — heart/brilliant shape, 3/4 view ── -->
+      <!-- Table face (top flat polygon) -->
+      <polygon points="220,90 248,105 258,135 248,162 220,170 192,162 182,135 192,105"
+        fill="url(#gemFill)" stroke="rgba(200,235,255,0.9)" stroke-width="1"/>
+      <!-- Crown left upper facet -->
+      <polygon points="192,105 220,90 220,128" fill="#D8F0FF" fill-opacity="0.75" stroke="rgba(180,220,255,0.6)" stroke-width="0.5"/>
+      <!-- Crown top center -->
+      <polygon points="220,90 248,105 220,128" fill="#A8CCEE" fill-opacity="0.6" stroke="rgba(160,210,250,0.5)" stroke-width="0.5"/>
+      <!-- Crown right upper facet -->
+      <polygon points="248,105 258,135 220,128" fill="#88B8E0" fill-opacity="0.65" stroke="rgba(130,190,240,0.5)" stroke-width="0.5"/>
+      <!-- Crown right lower facet -->
+      <polygon points="258,135 248,162 220,128" fill="#5090C8" fill-opacity="0.6" stroke="rgba(100,170,220,0.4)" stroke-width="0.5"/>
+      <!-- Crown bottom center -->
+      <polygon points="248,162 220,170 220,128" fill="#3878B0" fill-opacity="0.55" stroke="rgba(80,155,210,0.4)" stroke-width="0.5"/>
+      <!-- Crown left lower facet -->
+      <polygon points="220,170 192,162 220,128" fill="#6098C8" fill-opacity="0.65" stroke="rgba(100,170,220,0.45)" stroke-width="0.5"/>
+      <!-- Crown left middle facet -->
+      <polygon points="192,162 182,135 220,128" fill="#3870A8" fill-opacity="0.55" stroke="rgba(80,150,205,0.4)" stroke-width="0.5"/>
+      <!-- Crown left top facet -->
+      <polygon points="182,135 192,105 220,128" fill="#90C0E0" fill-opacity="0.6" stroke="rgba(140,195,235,0.45)" stroke-width="0.5"/>
+      <!-- Pavilion (below girdle, going down into setting) -->
+      <polygon points="182,135 258,135 248,162 220,195 192,162" fill="#1A4A80" fill-opacity="0.7" stroke="rgba(60,130,190,0.4)" stroke-width="0.5"/>
+      <polygon points="182,135 220,195 192,162" fill="#0E3060" fill-opacity="0.65" stroke="rgba(40,110,175,0.35)" stroke-width="0.5"/>
+      <polygon points="258,135 220,195 248,162" fill="#0A2850" fill-opacity="0.6" stroke="rgba(35,100,165,0.3)" stroke-width="0.5"/>
+      <!-- Girdle highlight -->
+      <polygon points="182,135 192,105 248,105 258,135 248,162 220,170 192,162"
+        fill="none" stroke="#C8E8FF" stroke-width="1" opacity="0.6"/>
+      <!-- Table highlight (bright reflection) -->
+      <polygon points="210,96 230,96 238,112 220,116 202,112" fill="white" fill-opacity="0.45"/>
+      <polygon points="215,98 225,98 230,108 220,110 210,108" fill="white" fill-opacity="0.35"/>
+
+      <!-- ── SPARKLES / LIGHT RAYS ── -->
+      <!-- Big center star above gem -->
+      <line x1="220" y1="52" x2="220" y2="80" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+      <line x1="220" y1="100" x2="220" y2="128" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.0"/>
+      <line x1="196" y1="66" x2="244" y2="66" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+      <line x1="202" y1="58" x2="238" y2="74" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
+      <line x1="238" y1="58" x2="202" y2="74" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
+      <!-- Star top-right -->
+      <line x1="298" y1="108" x2="298" y2="124" stroke="#E8C97A" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+      <line x1="290" y1="116" x2="306" y2="116" stroke="#E8C97A" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+      <!-- Star left -->
+      <line x1="140" y1="140" x2="140" y2="154" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+      <line x1="133" y1="147" x2="147" y2="147" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+      <!-- Tiny scattered dots -->
+      <circle cx="155" cy="100" r="1.5" fill="#E8C97A" opacity="0.7"/>
+      <circle cx="310" cy="160" r="1.5" fill="white" opacity="0.6"/>
+      <circle cx="132" cy="200" r="1" fill="#E8C97A" opacity="0.5"/>
+      <circle cx="318" cy="230" r="1" fill="white" opacity="0.5"/>
+      <circle cx="145" cy="260" r="1.2" fill="#E8C97A" opacity="0.4"/>
+      <circle cx="308" cy="285" r="1.2" fill="#E8C97A" opacity="0.4"/>
+      <circle cx="170" cy="80" r="1" fill="white" opacity="0.6"/>
+      <circle cx="270" cy="72" r="1.2" fill="white" opacity="0.5"/>
+      <circle cx="330" cy="140" r="1" fill="#E8C97A" opacity="0.55"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <p class="tag fade">Master Craftsman · Diamond Setter</p>
+    <h1 class="fade">Where <em>craft</em><br>meets<br>brilliance.</h1>
+    <p class="hero-desc fade">Handcrafted jewelry, expert diamond setting, and bespoke repairs — each piece given the care it deserves.</p>
+    <div class="ctas fade">
+      <a href="#contact" class="btn btn-gold">Book a Consultation</a>
+      <a href="#services" class="btn btn-ghost">View Services →</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
+</section>
+
+<div class="divider"><span>✦ &nbsp; Paolo Kiki Jewelry &nbsp; ✦</span></div>
+
+<section id="services">
+  <p class="tag">What We Do</p>
+  <h2>Services of <em>distinction</em></h2>
+  <p class="s-intro">Every piece of jewelry carries a story. We offer the full range of services to create, restore, and perfect yours.</p>
+  <div class="services-grid">
+    <div class="card"><p class="card-num">01</p><h3>Diamond Setting</h3><p>Prong, bezel, pavé, channel, and invisible setting — stones placed with precision to maximize brilliance and security.</p></div>
+    <div class="card"><p class="card-num">02</p><h3>Custom Design</h3><p>From concept sketch to finished piece, we craft original jewelry tailored to your exact vision and specifications.</p></div>
+    <div class="card"><p class="card-num">03</p><h3>Repair & Restoration</h3><p>Broken clasps, bent prongs, worn shanks — cherished pieces restored to their original beauty with exceptional workmanship.</p></div>
+    <div class="card"><p class="card-num">04</p><h3>Ring Sizing</h3><p>Precise sizing for all metals, including platinum and eternity bands. Your ring should fit as perfectly as it looks.</p></div>
+    <div class="card"><p class="card-num">05</p><h3>Stone Sourcing</h3><p>We help source ethically obtained diamonds and gemstones that match your specific quality, cut, and budget requirements.</p></div>
+    <div class="card"><p class="card-num">06</p><h3>Polishing & Cleaning</h3><p>Professional ultrasonic cleaning and hand polishing to restore the original luster of gold, silver, and platinum pieces.</p></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-visual">
+      <div class="ring">
+        <div class="ring-inner">
+          <span class="big-num">20+</span>
+          <span class="big-label">Years of craft</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-text">
+      <p class="tag">The Craftsman</p>
+      <h2>Passion in <em>every setting</em></h2>
+      <p>Paolo Kiki is a master jeweler with over two decades of experience in fine jewelry making and diamond setting. Every piece that passes through the workshop receives the same focused attention — whether it's a simple repair or a fully custom creation.</p>
+      <p>Working with all metals and a wide range of precious stones, the work is guided by one principle: quality that lasts generations.</p>
+      <blockquote class="pull">"A diamond is only as good as the hands that set it."</blockquote>
+      <a href="#contact" class="btn btn-gold">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <p class="tag" style="justify-content:center">Get In Touch</p>
+  <h2>Let's create something <em>extraordinary</em></h2>
+  <p class="s-intro">Whether you have a project in mind, a piece that needs care, or simply a question — reach out and let's talk.</p>
+  <div class="contact-items">
+    <div><p class="ci-label">Phone</p><p class="ci-val">+1 (626) 365-6612</p></div>
+    <div><p class="ci-label">Email</p><p class="ci-val"><a href="mailto:Khajikchefikian123@gmail.com" style="color:inherit;text-decoration:none;">Khajikchefikian123@gmail.com</a></p></div>
+    <div><p class="ci-label">Location</p><p class="ci-val">410 W 6th St, Los Angeles, CA</p></div>
+  </div>
+  <a href="mailto:Khajikchefikian123@gmail.com" class="btn btn-gold">Send a Message</a>
+</section>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <svg width="24" height="28" viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="18,1 35,10 35,32 18,41 1,32 1,10" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.5"/>
+      <polygon points="18,8 28,15 28,27 18,34 8,27 8,15" fill="none" stroke="#E8C97A" stroke-width="0.8" opacity="0.6"/>
+      <polygon points="18,8 28,15 18,21" fill="#C9A84C" fill-opacity="0.3"/>
+      <polygon points="28,15 28,27 18,21" fill="#C9A84C" fill-opacity="0.18"/>
+      <polygon points="28,27 18,34 18,21" fill="#C9A84C" fill-opacity="0.22"/>
+      <polygon points="18,34 8,27 18,21" fill="#C9A84C" fill-opacity="0.32"/>
+      <polygon points="8,27 8,15 18,21" fill="#C9A84C" fill-opacity="0.2"/>
+      <polygon points="8,15 18,8 18,21" fill="#C9A84C" fill-opacity="0.28"/>
+      <circle cx="18" cy="21" r="1.5" fill="#F0D98A" opacity="0.8"/>
+    </svg>
+    <span class="foot-name">Paolo Kiki Jewelry</span>
+  </div>
+  <span class="foot-copy">© 2025 Paolo Kiki Jewelry · 410 W 6th St, Los Angeles, CA</span>
+</footer>
+
+</body>
+</html>
