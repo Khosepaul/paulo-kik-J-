@@ -33,7 +33,7 @@ Upload to GitHub Pages to host for free. See instructions below.
 
 - **Phone:** +1 (626) 365-6612
 - **Email:** Khajikchefikian123@gmail.com
-- **Address:** 410 W 6th St, Los Angeles, CA
+- **Address:** 607 South Hill Street, Suite 715, Los Angeles, CA
 
 ---
 Built with HTML, CSS & SVG. No frameworks or dependencies required.
